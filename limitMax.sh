@@ -1,3 +1,3 @@
 #!/bin/sh
-echo "Limit maximum bw to 10Mbps"
-sudo wondershaper eth0 1048576 10240
+echo "Limit maximum bw to 4Mbps"
+sudo wondershaper eth0 1048576 4096
