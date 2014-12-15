@@ -1,5 +1,5 @@
 #!/bin/sh
-period=30
+period=120
 
 if [ $# -gt 0 ]
 then
