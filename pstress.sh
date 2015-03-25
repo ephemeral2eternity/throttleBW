@@ -28,7 +28,7 @@ do
         	stress --vm 2 --timeout $period
 	elif [ $method = bw ]; then
 		echo "--------- stress server bandwidth for $period seconds -------"
-        	sudo wondershaper eth0 1048576 1024
+        	sudo wondershaper eth0 1048576 4096
 		sleep $period
         	sudo wondershaper eth0 1048576 1048576
 	else
