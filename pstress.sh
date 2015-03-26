@@ -45,3 +45,5 @@ do
         echo "--------- Server without any stress for $period seconds -------"
         sleep $period
 done
+
+echo "--------- Periodical $method stressing with period $period seconds finished at $(date) !! -------"
