@@ -1,6 +1,7 @@
 #!/bin/sh
 period=60
 method=cpu
+endhour=4
 
 if [ $# -ge 1 ]
 then
@@ -12,10 +13,16 @@ then
 	period=$2
 fi
 
+if [ $# -ge 3 ]
+then
+	endhour=$3
+fi
+
 echo "Method: $method"
 echo "Period: $period"
+echo "End Hour: $endhour"
 
-while true
+while [ $(date "+%H") -lt $endhour ];
 do
 	if [ $method = cpu ]; then
 		echo "--------- stress server cpu for $period seconds -------"
