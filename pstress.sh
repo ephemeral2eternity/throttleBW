@@ -22,7 +22,16 @@ echo "Method: $method"
 echo "Period: $period"
 echo "End Hour: $endhour"
 
-while [ $(date "+%H") -lt $endhour ];
+endday=$(date "+%d")
+
+if [ $(date "+%H") -gt $endhour ]; then
+	endday=$((endday+1))
+	echo "Increase end day to tomorrow date $endday !!!"
+fi
+
+echo "End Day: $endday"
+
+while [ $(date "+%H") -lt $endhour ] || [ $(date "+%d") -lt $endday ];
 do
 	if [ $method = cpu ]; then
 		echo "--------- stress server cpu for $period seconds -------"
