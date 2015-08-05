@@ -11,7 +11,7 @@ do
         echo "--------- high bw 1 Gbps -------"
         sudo wondershaper eth0 1048576 1048576
         sleep $period
-        echo "--------- low bw 10 Mbps -------"
-        sudo wondershaper eth0 1048576 10240
+        echo "--------- low bw 1 Mbps -------"
+        sudo wondershaper eth0 1048576 1024
         sleep $period
 done
