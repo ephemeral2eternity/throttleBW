@@ -1,0 +1,4 @@
+The number of seconds elapsed since 01/01/1970 is:
+> 1439963348.
+> The current date and time of the system (starting CPU error) is:
+> Wed Aug 19 05:49:08 UTC 2015.
