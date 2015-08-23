@@ -1,6 +1,6 @@
 #!/bin/sh
 period=60
-method=cpu
+method="cpu"
 endhour=4
 
 if [ $# -ge 1 ]
@@ -22,6 +22,13 @@ echo "Method: $method"
 echo "Period: $period"
 echo "End Hour: $endhour"
 
+curTS=$(date "+%s")
+echo $curTS
+curDir=$(pwd)
+logFile="$curDir/$method-$curTS.log"
+echo $logFile
+cat /dev/null > $logFile
+
 endday=$(date "+%d")
 
 if [ $(date "+%H") -gt $endhour ]; then
@@ -33,6 +40,8 @@ echo "End Day: $endday"
 
 while [ $(date "+%H") -lt $endhour ] || [ $(date "+%d") -lt $endday ];
 do
+	curTS=$(date "+%s")
+	echo "$curTS, 1" >> $logFile
 	if [ $method = cpu ]; then
 		echo "--------- stress server cpu for $period seconds -------"
         	stress --cpu 8 --timeout $period
@@ -44,7 +53,7 @@ do
         	stress --vm 2 --timeout $period
 	elif [ $method = bw ]; then
 		echo "--------- stress server bandwidth for $period seconds -------"
-        	sudo wondershaper eth0 1048576 4096
+        	sudo wondershaper eth0 1048576 1048
 		sleep $period
         	sudo wondershaper eth0 1048576 1048576
 	else
@@ -52,6 +61,8 @@ do
 		break
 	fi
         echo "--------- Server without any stress for $period seconds -------"
+	curTS=$(date "+%s")
+	echo "$curTS, 0" >> $logFile
         sleep $period
 done
 echo "--------- Periodical $method stressing with period $period seconds finished at $(date) !! -------"
